@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<html>
+	<head>
+		<script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+		<style>
+			.outer {
+				display: table;
+				position: absolute;
+				height: 100%;
+				width: 100%;
+			}
+			
+			.middle {
+				display: table-cell;
+				vertical-align: middle;
+			}
+
+			.inner
+			{
+				width: 100%;
+				text-align: center;
+			}
+			
+			.word
+			{
+				font-size: 6em;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div class="outer"><div class="middle">
+		<div class="inner">
+			<h1 class="word">{{ word }}</h1>
+			<input onclick='responsiveVoice.speak("{{ word }}");' type='button' value='🔊 Speak' />
+			<input onclick='window.location.reload(false); ;' type='button' value='Next &rarr;' />
+		</div>
+		</div></div>
+
+		<script>responsiveVoice.speak("{{ word }}");</script>
+	</body>
+</html>

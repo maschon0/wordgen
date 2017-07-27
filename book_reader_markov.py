@@ -6,7 +6,7 @@ from decimal import *
 import json
 import sys,os,re,math
 
-library_folder = '.'
+library_folder = 'project_gutenberg'
 markov_folder = 'markov_models'
 
 tail_length = 2
@@ -94,7 +94,7 @@ def words_in(text):
     return re.findall(r"[\w']+",text)
 
 def read_book(bookfile,update_master=True,dump=False,output_file='result.json'):
-    book = open(bookfile,'rb')
+    book = open(library_folder+'/'+bookfile,'rb')
     output_file = markov_folder+'/'+output_file
     paragraph = ''
     book_sentences = []
@@ -135,3 +135,9 @@ book_markovs = dict()
 for book in books:
     bookname=book.split('.')[0]
     book_markovs[bookname] = read_book(book,dump=True,output_file=bookname+'.json')
+
+with open(markov_folder+'/master_markov.json', 'w') as fp:
+    print('Fully trained on library. Dumping master json...')
+    json.dump(master_markov, fp)
+    print('All Markovs dumped.')
+    

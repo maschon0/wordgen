@@ -9,23 +9,26 @@ def init(book='huckleberry_finn'):
 
 tail_length = 2
 
-def guess_next(markov, tail):
-	distr = copy.deepcopy(markov[tail])
-	total = Decimal(distr['_total'])
-	del distr['_total']
-	
-	if not tail in markov:
-		return '_end'
-	
-	selector_value = Decimal(random.random())
-	
-	for key in distr:
-		weight = distr[key] / total
-		selector_value -= weight
+def guess_next(markov, tail, length, pad_length=15):
+    distr = copy.deepcopy(markov[tail])
+    total = Decimal(distr['_total'])
+    del distr['_total']
 
-		
-		if selector_value < 0:
-			return key
+    if not tail in markov.keys():
+        return '_end'
+
+    # Pad _end and _total based on length to limit very long words
+    if length > pad_length and '_end' in distr.keys():
+        end_weight = Decimal((length / float(pad_length))**1) * total
+        distr['_end'] += end_weight
+        total += end_weight
+    
+    selector_value = Decimal(random.random())
+    for key in distr:
+        weight = distr[key] / total
+        selector_value -= weight
+        if selector_value < 0:
+            return key
 
 def make_word(markov):
     sentence = ''

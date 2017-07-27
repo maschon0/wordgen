@@ -127,7 +127,7 @@ def read_book(bookfile,update_master=True,dump=False,output_file='result.json'):
 master_markov = dict()
 
 def load_markov_from_json(json_file='result.json'):
-	with open(json_file) as myfile:
+    with open(json_file) as myfile:
         data=myfile.read().replace('\n', ''))
     return eval(data)
     

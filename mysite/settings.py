@@ -25,7 +25,7 @@ SECRET_KEY = '@%pu@)e*zpt&xzf9+3t20+*jn^x3xdd5*&4#&m4h(#adz4d^d-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['maschon0.pythonanywhere.com']
 
 
 # Application definition

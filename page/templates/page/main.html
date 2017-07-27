@@ -33,6 +33,14 @@
 	
 	<body>
 		<div class="outer"><div class="middle">
+		<div class="dropdown">
+		  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+		  <div id="myDropdown" class="dropdown-content">
+			<a href="#">Link 1</a>
+			<a href="#">Link 2</a>
+			<a href="#">Link 3</a>
+		  </div>
+		</div>
 		<div class="inner">
 			<h1 class="word">{{ word }}</h1>
 			<input onclick='responsiveVoice.speak("{{ word }}");' type='button' value='🔊 Speak' />

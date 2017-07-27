@@ -5,7 +5,9 @@ from decimal import *
 
 json_dir='markov_models/'
 def init(book='huckleberry_finn'):
-	return eval(open(json_dir+book+'.json').readline())
+	with open(json_dir+book+'.json') as myfile:
+        data=myfile.read().replace('\n', ''))
+    return eval(data)
 
 tail_length = 2
 

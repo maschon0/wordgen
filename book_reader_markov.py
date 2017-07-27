@@ -36,7 +36,7 @@ def train(training_array,dump=False,output_file='result.json'):
     if dump:
         print('trained. Dumping json')
         with open(output_file, 'w') as fp:
-            json.dump(markov, fp)
+            json.dump(markov, fp , indent = 2)
         print('dumped.')        
     return markov
 
@@ -127,8 +127,9 @@ def read_book(bookfile,update_master=True,dump=False,output_file='result.json'):
 master_markov = dict()
 
 def load_markov_from_json(json_file='result.json'):
-	return eval(open(json_file).readline())
-
+	with open(json_file) as myfile:
+        data=myfile.read().replace('\n', ''))
+    return eval(data)
     
 books = [f for f in os.listdir(library_folder) if os.path.isfile(os.path.join(library_folder,f))]
 book_markovs = dict()
@@ -138,6 +139,6 @@ for book in books:
 
 with open(markov_folder+'/master_markov.json', 'w') as fp:
     print('Fully trained on library. Dumping master json...')
-    json.dump(master_markov, fp)
+    json.dump(master_markov, fp, indent=2)
     print('All Markovs dumped.')
     

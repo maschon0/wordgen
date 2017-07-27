@@ -128,7 +128,7 @@ master_markov = dict()
 
 def load_markov_from_json(json_file='result.json'):
     with open(json_file) as myfile:
-        data=myfile.read().replace('\n', ''))
+        data=myfile.read().replace('\n', '')
     return eval(data)
     
 books = [f for f in os.listdir(library_folder) if os.path.isfile(os.path.join(library_folder,f))]
